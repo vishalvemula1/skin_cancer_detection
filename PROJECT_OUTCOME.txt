@@ -1,0 +1,18 @@
+PROJECT OUTCOME
+
+Goal:
+Develop a deep learning model for binary classification of skin lesions as malignant or benign using the HAM10000 dataset, addressing the significant class imbalance present in dermatological image data.
+
+Approach:
+Implemented a transfer learning approach using a pretrained ResNet50 architecture. The HAM10000 dataset was preprocessed to consolidate seven lesion types into two classes: malignant (melanoma, basal cell carcinoma, actinic keratoses) and benign (melanocytic nevi, benign keratosis, dermatofibroma, vascular lesions). To address the 3:1 class imbalance, data augmentation techniques including horizontal flipping and brightness adjustment were applied to the minority malignant class during training.
+
+Results:
+The final model achieved 89.4% accuracy on the held-out test set after 10 epochs of training. Training accuracy reached 98.5% while maintaining reasonable generalization, with test accuracy stabilizing around 87-89% across later epochs. The confusion matrix evaluation shows the model performs classification on both classes, though some overfitting is evident from the training/test accuracy gap.
+
+Technical Implementation:
+- Data preprocessing pipeline with stratified train/test split (80/20)
+- Image resizing to 300x225 pixels for consistent input dimensions
+- SGD optimizer with learning rate 0.001 and momentum 0.5
+- Cross-entropy loss function
+- Batch size of 16 with 4 worker processes for data loading
+- Full fine-tuning of all ResNet50 layers rather than just the classifier head
